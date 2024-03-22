@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class lighting : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class lighting : MonoBehaviour
     public Sprite lightOnSprite;
     public Sprite lightOffSprite;
     SpriteRenderer spriteLight;
+
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,20 @@ public class lighting : MonoBehaviour
             isLightOn = true;
             yield return new WaitForSeconds(3);
         }
+    }
 
+    IEnumerator LightReset()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("EvanTestScene");
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player" && isLightOn == true)
+        {
+            Debug.Log("Entered Light");
+            StartCoroutine(LightReset());
+        }
     }
 }
