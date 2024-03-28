@@ -41,7 +41,7 @@ public class player : MonoBehaviour
     private float jumpBuffer = 0;
     private const float maxJumpBuffer = 2.5f;
     private float diveBuffer = 0;
-    private const float maxDiveBuffer = 0.51f;
+    private const float maxDiveBuffer = 0.51f; // orig .51
     private float target_rotation = 0;
     private const float twn_duration = 0.25f;
     //const spritetrail= preload('res://Scenes/spritetrail/sprite_trail.tscn')
@@ -161,7 +161,6 @@ public class player : MonoBehaviour
             // smoothly rotate dive_aim based on input
             Vector3 newRot = dive_aim.transform.eulerAngles;
             newRot.z = Mathf.LerpAngle(dive_aim.transform.eulerAngles.z, Mathf.Atan2(vector_direction_input.y, vector_direction_input.x) * Mathf.Rad2Deg, 0.5f);
-            //Debug.Log($"Angle: {Mathf.Atan2(vector_direction_input.y, vector_direction_input.x)} | Rotation: {newRot}");
             dive_aim.transform.eulerAngles = newRot;
         }
         
@@ -196,13 +195,10 @@ public class player : MonoBehaviour
 		    jumpBuffer = maxJumpBuffer;
         }
 
-        /*
-         * Dive mechanic
         if (Input.GetKeyDown(KeyCode.X)) 
         {
             diveBuffer = maxDiveBuffer;
         }
-        */
 
 
         if (is_on_floor()) 
@@ -238,39 +234,50 @@ public class player : MonoBehaviour
         }
 
 
-        /*
-         * For diving into blocks
-        if (diveBuffer > 0 && dive_aim.get_overlapping_bodies().size() > 0)
-        { 
+        List<Collider2D> overlaps = new List<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D();
+        if (diveBuffer > 0 && dive_aim_collider.OverlapCollider(filter, overlaps) > 0)
+        {
 
-            var phaseable = true
-		    #Check if the tileset is unphaseable
-		    for body in dive_aim.get_overlapping_bodies():
+            bool phaseable = true;
+		    // Check if the tileset is unphaseable
+		    foreach (Collider2D body in overlaps)
+            {
 
-                if body.is_in_group('Unphaseable'):
-
-                    phaseable = false
-
-
-            if phaseable:
-			    global.changeToLowPassMusic()
+                if (!body.gameObject.CompareTag("Phaseable"))
+                {
+                    phaseable = false;
+                }
+            }
 
 
+            if (phaseable) 
+            {
+                // music change
+                //global.changeToLowPassMusic()
+
+                /* 
+                 * sound effects
                 if randf() <= 0.5:
 				    $sounds / snd_dive.play()
-
                 else:
 				    $sounds / snd_dive1.play()
+                */
 
-                self.state = State_dive
-                var cursor_position = dive_aim.get_node('position_2d').global_position#-Vector2(0,1)
-			    var vector_target_position = Vector2(
-                    floor(cursor_position.x / global.tile_size.x) * global.tile_size.x,\
+                pState = PlayerState.State_dive;
+                Vector2 cursor_position = dive_aim.transform.Find("Phase Point").transform.position;
+                /*
+                 * Unused for now, but may require 
+			    Vector3 vector_target_position = new Vector3(
+                    Mathf.Floor(cursor_position.x / global.tile_size.x) * global.tile_size.x,\
 
-                    floor(cursor_position.y / global.tile_size.y) * global.tile_size.y \
+                    Mathf.Floor(cursor_position.y / global.tile_size.y) * global.tile_size.y \
 				    ) + global.tile_size / 2 + vSpriteOffset
+                */
 
 
+                /*
+                 * Animation stuff
                 var _v = nTwnDive.interpolate_property(self, 'global_position', self.global_position, vector_target_position, twn_duration, Tween.TRANS_QUART, Tween.EASE_OUT)
 
                 _v = nTwnDive.start()
@@ -281,12 +288,12 @@ public class player : MonoBehaviour
 
                 createSpherize(vector_target_position)
 			    $camera2D.minorShake()
+                */
 
                 return;
+            }
         }
-        */
 
-        var initialVelocity = vectorVelocity;
 
         //Debug.Log(vector_direction_input);
         vectorVelocity.x = Mathf.Lerp(vectorVelocity.x, maximum_speed * vector_direction_input.x, lerp_constant);
