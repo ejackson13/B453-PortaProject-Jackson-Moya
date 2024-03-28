@@ -13,7 +13,7 @@ public class player : MonoBehaviour
     private bool bWasOnFloor = false;
     private Vector2 vectorVelocity;
     private Vector2 vector_gravity;
-    public float last_horizontal_direction; // seems to only be -1, 0, or 1
+    public float last_horizontal_direction = 1; // seems to only be -1, 0, or 1
     private bool active = true;
     private string anim = "";
     private Vector2 vSpriteOffset = new Vector2(0,8);
@@ -54,7 +54,7 @@ public class player : MonoBehaviour
     //onready var nSprEyes:Sprite = $eyes
     //onready var nAnimationPlayer:AnimationPlayer = $animation_player
     //onready var nDiveAim:Node2D =$dive_aim/dive_aim
-    //onready var dive_aim:Node2D =$dive_aim/dive_aim
+    [SerializeField] private GameObject dive_aim;
     //onready var nTwnDive:Tween = $twn_dive
     //onready var nVignette:Sprite = $layerVignette/sprVignette
 
@@ -64,7 +64,11 @@ public class player : MonoBehaviour
     {
         //nSprEyes.visible = false
         //nVignette.modulate.a = 0
-        //nDiveAim.rotation = 0.0 if self.last_horizontal_direction == 1 else -PI
+
+        // initialize dive aimer rotation
+        Vector3 newRot = dive_aim.transform.eulerAngles;
+        newRot.z = last_horizontal_direction == 1 ? 0 : -180;
+        dive_aim.transform.eulerAngles = newRot;
     }
 
     // Update is called once per frame
@@ -151,13 +155,14 @@ public class player : MonoBehaviour
             */
         }
 		
-        /*
-         * Dive aimer
 	    if (vector_direction_input!=Vector2.zero)
-        { 
-		    $dive_aim.rotation = lerp_angle($dive_aim.rotation, vector_direction_input.angle(), 0.5)
+        {
+            // smoothly rotate dive_aim based on input
+            Vector3 newRot = dive_aim.transform.eulerAngles;
+            newRot.z = Mathf.LerpAngle(dive_aim.transform.eulerAngles.z, Mathf.Atan2(vector_direction_input.y, vector_direction_input.x), 0.5f);
+            dive_aim.transform.eulerAngles = newRot;
         }
-        */
+        
     }
 
     private void _state_normal(float _delta, Vector2 vector_direction_input)
