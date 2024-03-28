@@ -55,6 +55,7 @@ public class player : MonoBehaviour
     //onready var nAnimationPlayer:AnimationPlayer = $animation_player
     //onready var nDiveAim:Node2D =$dive_aim/dive_aim
     [SerializeField] private GameObject dive_aim;
+    [SerializeField] private Collider2D dive_aim_collider;
     //onready var nTwnDive:Tween = $twn_dive
     //onready var nVignette:Sprite = $layerVignette/sprVignette
 
@@ -159,7 +160,8 @@ public class player : MonoBehaviour
         {
             // smoothly rotate dive_aim based on input
             Vector3 newRot = dive_aim.transform.eulerAngles;
-            newRot.z = Mathf.LerpAngle(dive_aim.transform.eulerAngles.z, Mathf.Atan2(vector_direction_input.y, vector_direction_input.x), 0.5f);
+            newRot.z = Mathf.LerpAngle(dive_aim.transform.eulerAngles.z, Mathf.Atan2(vector_direction_input.y, vector_direction_input.x) * Mathf.Rad2Deg, 0.5f);
+            //Debug.Log($"Angle: {Mathf.Atan2(vector_direction_input.y, vector_direction_input.x)} | Rotation: {newRot}");
             dive_aim.transform.eulerAngles = newRot;
         }
         
@@ -326,7 +328,7 @@ public class player : MonoBehaviour
 
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.collider.gameObject.CompareTag("Ground"))
+            if (hit.collider.gameObject.CompareTag("Phaseable") || hit.collider.gameObject.CompareTag("Unphaseable"))
             {
                 return true;
             }
