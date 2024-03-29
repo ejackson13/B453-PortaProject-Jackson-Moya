@@ -4026,9 +4026,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2714559231398972463, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
+      propertyPath: m_TagString
+      value: Light
+      objectReference: {fileID: 0}
     - target: {fileID: 8194328347812509116, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8194328347812509116, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
@@ -4037,10 +4041,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2714559231398972463, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2146507996}
+      addedObject: {fileID: 2146508002}
     - targetCorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2146507998}
+      addedObject: {fileID: 2146508001}
+    - targetCorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2146508003}
   m_SourcePrefab: {fileID: 100100000, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
 --- !u!1 &2146507994 stripped
 GameObject:
@@ -4052,29 +4059,12 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7599195799034173220, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
   m_PrefabInstance: {fileID: 2146507993}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2146507996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146507994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686e356f8d8574b93842c2fdd893e767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activated: 1
-  button: {fileID: 9151744159606453996}
-  lightSource: {fileID: 2146507995}
-  lightSourceOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
-  lightSourceOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
 --- !u!1 &2146507997 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
   m_PrefabInstance: {fileID: 2146507993}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2146507998
+--- !u!114 &2146508001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4083,14 +4073,74 @@ MonoBehaviour:
   m_GameObject: {fileID: 2146507997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 686e356f8d8574b93842c2fdd893e767, type: 3}
+  m_Script: {fileID: 11500000, guid: 39a4ecb39ae934d9cb63be92b848eaff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activated: 1
-  button: {fileID: 9151744159606453996}
-  lightSource: {fileID: 411306663}
-  lightSourceOnSprite: {fileID: 21300000, guid: 8a89d6dcb6f764d59a86fc6cc624d562, type: 3}
+  lightSourceOnSprite: {fileID: 21300000, guid: ed8ea1d4b5df14c62b4e1dd795f65acd, type: 3}
   lightSourceOffSprite: {fileID: 0}
+  spriteLight: {fileID: 411306663}
+  classInstance: {fileID: 9151744159606453997}
+--- !u!114 &2146508002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146507994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a4ecb39ae934d9cb63be92b848eaff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightSourceOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
+  lightSourceOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
+  spriteLight: {fileID: 2146507995}
+  classInstance: {fileID: 9151744159606453997}
+--- !u!61 &2146508003
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146507997}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04086387, y: 0.5470414}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.4, y: 6.4}
+    newSize: {x: 6.4, y: 6.4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.3375597, y: 4.193901}
+  m_EdgeRadius: 0
 --- !u!1001 &1094546207447944719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4156,6 +4206,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2649962148768371198, guid: 089d6b974721748d3a3ec2bf4b03c513, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2649962148768371198, guid: 089d6b974721748d3a3ec2bf4b03c513, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3951034317319885063, guid: 089d6b974721748d3a3ec2bf4b03c513, type: 3}
       propertyPath: m_Name
       value: button
@@ -4229,10 +4287,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 1
-  button: {fileID: 9151744159606453996}
-  lightSource: {fileID: 9151744159606453999}
-  lightSourceOnSprite: {fileID: 21300000, guid: 191efa281021b447db25369def4a52f7, type: 3}
-  lightSourceOffSprite: {fileID: 21300000, guid: 191efa281021b447db25369def4a52f7, type: 3}
 --- !u!61 &9151744159606453998
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4278,11 +4332,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18, y: 0.1}
   m_EdgeRadius: 0
---- !u!212 &9151744159606453999 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2649962148768371198, guid: 089d6b974721748d3a3ec2bf4b03c513, type: 3}
-  m_PrefabInstance: {fileID: 9151744159606453995}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

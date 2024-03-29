@@ -47,7 +47,7 @@ public class lighting : MonoBehaviour
         }
     }
 
-    IEnumerator LightReset() //light reset
+    public IEnumerator LightReset() //light reset
     {
         yield return new WaitForSeconds(0.5f); //wait 0.5 seconds 
         SceneManager.LoadScene("EvanTestScene"); //reloads the scene from the start

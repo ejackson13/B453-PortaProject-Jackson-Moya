@@ -1,44 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
-    public bool activated = true;
-    public GameObject button;
-    public SpriteRenderer lightSource;
-    public Sprite lightSourceOnSprite;
-    public Sprite lightSourceOffSprite;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        lightSource = GetComponent<SpriteRenderer>();
-    }
+    public bool activated = true; //activated bool for the light to turn off and on
 
     // Update is called once per frame
     void Update()
     {
-        if (activated == false)
-        {
-            lightSource.sprite = lightSourceOffSprite;
 
-        }
-        else
-        {
-            lightSource.sprite = lightSourceOnSprite;
-        }
     }
 
-    public void OnTriggerEnter2D(Collider2D collider)
+    public virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Player" && this.gameObject == button && activated == true)
+        if (collider.tag == "Player") //if the collider was the player
         {
-            activated = false;
-        }
-        else if (collider.tag == "Player" && this.gameObject == button && activated == false)
-        {
-            activated = true;
+            activated = !activated; // Toggle the activated state
         }
     }
 }
