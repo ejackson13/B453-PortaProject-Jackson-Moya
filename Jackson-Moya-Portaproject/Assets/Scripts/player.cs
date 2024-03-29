@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.U2D;
 using UnityEngine.XR;
@@ -94,6 +95,42 @@ public class player : MonoBehaviour
             }
         }
 
+
+        // color dive aimer
+        List<Collider2D> overlaps = new List<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D();
+        dive_aim_collider.OverlapCollider(filter.NoFilter(), overlaps);
+        SpriteRenderer dive_aim_sprite = dive_aim.transform.Find("Main Sprite").transform.gameObject.GetComponent<SpriteRenderer>();
+        Color32 r = new Color32(192, 70, 31, 255); // red is "c0461f"
+        Color32 gr = new Color32(175, 255, 0, 255); // green is "afff00")
+        bool phaseable = true;
+        foreach (Collider2D body in overlaps)
+        {
+            if (!body.gameObject.CompareTag("Phaseable"))
+            {
+                phaseable = false;
+            }
+        }
+        if (phaseable) 
+        { 
+
+            if (pState == PlayerState.State_normal) 
+            {
+                dive_aim_sprite.color = overlaps.Count > 0 ? gr : r;
+            }
+
+            else 
+            {
+                dive_aim_sprite.color = overlaps.Count > 0 ? r : gr;
+            }
+        }
+        else 
+        {
+            dive_aim_sprite.color = r;
+        }
+
+
+
         /*
          * Animations
         if (nAnimationPlayer.current_animation != anim):
@@ -147,13 +184,10 @@ public class player : MonoBehaviour
             {
                 _state_normal(Time.deltaTime, vector_direction_input);
             }
-            /*
-             * Diving
 		    else if (pState == PlayerState.State_dive) 
             {
-                _state_dive(delta, vector_direction_input);
+                _state_dive(Time.deltaTime, vector_direction_input);
             }
-            */
         }
 		
 	    if (vector_direction_input!=Vector2.zero)
@@ -211,7 +245,7 @@ public class player : MonoBehaviour
         }
 
         jumpBuffer -= 0.5f; ;
-        //diveBuffer -= 0.5f;
+        diveBuffer -= 0.5f;
 
 
         if (jumpBuffer > 0 && airTime > 0)
@@ -236,6 +270,7 @@ public class player : MonoBehaviour
 
         List<Collider2D> overlaps = new List<Collider2D>();
         ContactFilter2D filter = new ContactFilter2D();
+
         if (diveBuffer > 0 && dive_aim_collider.OverlapCollider(filter, overlaps) > 0)
         {
 
@@ -268,7 +303,7 @@ public class player : MonoBehaviour
                 Vector2 cursor_position = dive_aim.transform.Find("Phase Point").transform.position;
                 /*
                  * Unused for now, but may require 
-			    Vector3 vector_target_position = new Vector3(
+			    Vector2 vector_target_position = new Vector2(
                     Mathf.Floor(cursor_position.x / global.tile_size.x) * global.tile_size.x,\
 
                     Mathf.Floor(cursor_position.y / global.tile_size.y) * global.tile_size.y \
@@ -327,6 +362,61 @@ public class player : MonoBehaviour
 
         bWasOnFloor = is_on_floor();
     }
+
+
+
+    private void _state_dive(float _delta, Vector2 vector_direction_input)
+    {
+        // set velocity to zero
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        // animation
+        //nVignette.modulate.a = lerp(nVignette.modulate.a, 1, 0.1)
+
+        if (Input.GetKeyDown(KeyCode.X)) 
+        {
+            diveBuffer = maxDiveBuffer;
+        }
+        diveBuffer -= 0.5f;
+
+        List<Collider2D> overlaps = new List<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D();
+        if (diveBuffer>0 && dive_aim_collider.OverlapCollider(filter, overlaps) == 0) 
+        {
+            /*
+             * music and sfx stuff
+		    global.changeFromLowPassMusic()
+		    $sounds/snd_dive_away.play()
+            */
+            pState = PlayerState.State_normal;
+
+            /*
+             * Not needed until animation stuff below is implemented
+            var vector_target_position:Vector2 = Vector2(
+                floor(dive_aim.global_position.x / global.tile_size.x) * global.tile_size.x,\
+
+                floor(dive_aim.global_position.y / global.tile_size.y) * global.tile_size.y \
+			    ) + global.tile_size / 2 + vSpriteOffset
+            */
+
+
+            /*
+             * Animation stuff
+            var _v = nTwnDive.interpolate_property(self, 'global_position', self.global_position, vector_target_position, twn_duration * 0.8, Tween.TRANS_QUART, Tween.EASE_OUT)
+
+            _v = nTwnDive.start()
+
+
+            create_splash(10,15, (self.global_position-vector_target_position),(self.global_position-vector_target_position)/2)
+		    createSpherize()
+		    $camera2D.minorShake()
+            */
+
+            vectorVelocity = Vector2.zero; //(self.global_position-vector_target_position).normalized()*maximum_speed #Add conservation of momentum maybe
+        }
+    }
+
+
 
     private bool is_on_floor()
     {
