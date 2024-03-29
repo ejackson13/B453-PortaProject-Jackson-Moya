@@ -5,15 +5,15 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     public bool activated = true;
-    public GameObject lightSource;
-    public SpriteRenderer lightSourceOnSprite;
-    public SpriteRenderer lightSourceOffSprite;
-    public SpriteRenderer lightBeam;
+    public GameObject button;
+    public SpriteRenderer lightSource;
+    public Sprite lightSourceOnSprite;
+    public Sprite lightSourceOffSprite;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        lightSource = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -21,21 +21,22 @@ public class Button : MonoBehaviour
     {
         if (activated == false)
         {
-            lightBeam.enabled = false;
+            lightSource.sprite = lightSourceOffSprite;
+
         }
         else
         {
-            lightBeam.enabled = true;
+            lightSource.sprite = lightSourceOnSprite;
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Player" && activated == true)
+        if (collider.tag == "Player" && this.gameObject == button && activated == true)
         {
             activated = false;
         }
-        else if (collider.tag == "Player" && activated == false)
+        else if (collider.tag == "Player" && this.gameObject == button && activated == false)
         {
             activated = true;
         }
