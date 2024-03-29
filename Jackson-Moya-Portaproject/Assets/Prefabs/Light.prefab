@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2005922767923699991}
   - component: {fileID: 7599195799034173220}
-  - component: {fileID: 877626846505816380}
   m_Layer: 6
   m_Name: Light
   m_TagString: Untagged
@@ -86,22 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &877626846505816380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714559231398972463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7644098cee74808a15a0d4c9ecfdf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  secondsForLight: 3
-  lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
-  lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
-  player: {fileID: 0}
 --- !u!1 &5243135322800803392
 GameObject:
   m_ObjectHideFlags: 0
