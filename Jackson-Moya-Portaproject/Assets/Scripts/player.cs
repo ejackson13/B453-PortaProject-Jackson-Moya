@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.U2D;
 using UnityEngine.XR;
+using static UnityEditor.ShaderData;
 
 public class player : MonoBehaviour
 {
@@ -52,6 +54,7 @@ public class player : MonoBehaviour
     //const fxPlayerLandDust = preload("res://Scenes/fxPlayerLandDust.tscn")
 
     [SerializeField] private SpriteRenderer nSprite; // sprite type instead?
+    [SerializeField] private SpriteRenderer eyeSprite;
     //onready var nSprEyes:Sprite = $eyes
     //onready var nAnimationPlayer:AnimationPlayer = $animation_player
     //onready var nDiveAim:Node2D =$dive_aim/dive_aim
@@ -413,6 +416,40 @@ public class player : MonoBehaviour
             */
 
             vectorVelocity = Vector2.zero; //(self.global_position-vector_target_position).normalized()*maximum_speed #Add conservation of momentum maybe
+        }
+    }
+
+
+
+    // takes starting position, target position, and the duration
+    private IEnumerator DiveTween(Vector3 starting_position, Vector3 target_position, float duration)
+    {
+
+        // run when tween starts
+        //self.active = false
+
+        nSprite.gameObject.SetActive(!nSprite.gameObject.activeSelf);
+        eyeSprite.gameObject.SetActive(!eyeSprite.gameObject.activeSelf);
+
+        flag_constant_spritetrail = true;
+
+        // prevent player from interacting with other objects
+        gameObject.GetComponent<Collider2D>().enabled = false;
+
+
+        // interpolate position to target
+
+
+        // run when tween finishes
+        //self.active = true
+
+        flag_constant_spritetrail = false;
+
+        if (pState == PlayerState.State_normal)
+        {
+            // turn collisions back on?
+		    //set_collision_layer_bit(1, false)
+            //set_collision_mask_bit(1, false)
         }
     }
 
