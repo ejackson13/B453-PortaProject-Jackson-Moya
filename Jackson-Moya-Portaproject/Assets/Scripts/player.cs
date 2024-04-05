@@ -19,7 +19,7 @@ public class player : MonoBehaviour
     public float last_horizontal_direction = 1; // seems to only be -1, 0, or 1
     private bool active = true;
     private string anim = "";
-    private Vector2 vSpriteOffset = new Vector2(0,8);
+    private Vector2 vSpriteOffset = new Vector2(0,.5f); // changed from (0, 8) to use unity units instead of pixels
 
     private enum PlayerState
     { 
@@ -47,6 +47,7 @@ public class player : MonoBehaviour
     private const float maxDiveBuffer = 0.51f; // orig .51
     private float target_rotation = 0;
     private const float twn_duration = 0.25f;
+    public AnimationCurve tween_interpolation_curve;
     //const spritetrail= preload('res://Scenes/spritetrail/sprite_trail.tscn')
     //const spherizeShader= preload("res://Scenes/spherizeShader.tscn")
     //const drop= preload("res://Scenes/drop.tscn")
@@ -54,7 +55,7 @@ public class player : MonoBehaviour
     //const fxPlayerLandDust = preload("res://Scenes/fxPlayerLandDust.tscn")
 
     [SerializeField] private SpriteRenderer nSprite; // sprite type instead?
-    [SerializeField] private SpriteRenderer eyeSprite;
+    [SerializeField] private GameObject eyes;
     //onready var nSprEyes:Sprite = $eyes
     //onready var nAnimationPlayer:AnimationPlayer = $animation_player
     //onready var nDiveAim:Node2D =$dive_aim/dive_aim
@@ -247,7 +248,7 @@ public class player : MonoBehaviour
             airTime -= 0.5f;
         }
 
-        jumpBuffer -= 0.5f; ;
+        jumpBuffer -= 0.5f;
         diveBuffer -= 0.5f;
 
 
@@ -304,22 +305,17 @@ public class player : MonoBehaviour
 
                 pState = PlayerState.State_dive;
                 Vector2 cursor_position = dive_aim.transform.Find("Phase Point").transform.position;
-                /*
-                 * Unused for now, but may require 
-			    Vector2 vector_target_position = new Vector2(
-                    Mathf.Floor(cursor_position.x / global.tile_size.x) * global.tile_size.x,\
 
-                    Mathf.Floor(cursor_position.y / global.tile_size.y) * global.tile_size.y \
-				    ) + global.tile_size / 2 + vSpriteOffset
-                */
+                Vector3 starting_position = transform.position;
+                Vector2 vector_target_position = new Vector2(Mathf.Floor(cursor_position.x) + .5f, Mathf.Floor(cursor_position.y) + .5f);
 
+
+                //var _v = nTwnDive.interpolate_property(self, 'global_position', self.global_position, vector_target_position, twn_duration, Tween.TRANS_QUART, Tween.EASE_OUT)
+                StartCoroutine(DiveTween(starting_position, vector_target_position, twn_duration));
+                    
 
                 /*
                  * Animation stuff
-                var _v = nTwnDive.interpolate_property(self, 'global_position', self.global_position, vector_target_position, twn_duration, Tween.TRANS_QUART, Tween.EASE_OUT)
-
-                _v = nTwnDive.start()
-
                 nAnimationPlayer.play("idle")
 
                 create_splash(20, 30, -(self.global_position - vector_target_position), (self.global_position - vector_target_position) / 2)
@@ -393,23 +389,18 @@ public class player : MonoBehaviour
             */
             pState = PlayerState.State_normal;
 
+            Vector2 cursor_position = dive_aim.transform.Find("Phase Point").transform.position;
+
+            Vector3 starting_position = transform.position;
+            Vector2 vector_target_position = new Vector2(Mathf.Floor(cursor_position.x) + .5f, Mathf.Floor(cursor_position.y) + .5f);
+
+
+            //var _v = nTwnDive.interpolate_property(self, 'global_position', self.global_position, vector_target_position, twn_duration, Tween.TRANS_QUART, Tween.EASE_OUT)
+            StartCoroutine(DiveTween(starting_position, vector_target_position, twn_duration * .8f));
+
+
             /*
-             * Not needed until animation stuff below is implemented
-            var vector_target_position:Vector2 = Vector2(
-                floor(dive_aim.global_position.x / global.tile_size.x) * global.tile_size.x,\
-
-                floor(dive_aim.global_position.y / global.tile_size.y) * global.tile_size.y \
-			    ) + global.tile_size / 2 + vSpriteOffset
-            */
-
-
-            /*
-             * Animation stuff
-            var _v = nTwnDive.interpolate_property(self, 'global_position', self.global_position, vector_target_position, twn_duration * 0.8, Tween.TRANS_QUART, Tween.EASE_OUT)
-
-            _v = nTwnDive.start()
-
-
+             * animation stuff
             create_splash(10,15, (self.global_position-vector_target_position),(self.global_position-vector_target_position)/2)
 		    createSpherize()
 		    $camera2D.minorShake()
@@ -429,15 +420,31 @@ public class player : MonoBehaviour
         //self.active = false
 
         nSprite.gameObject.SetActive(!nSprite.gameObject.activeSelf);
-        eyeSprite.gameObject.SetActive(!eyeSprite.gameObject.activeSelf);
+        eyes.SetActive(!eyes.activeSelf);
 
         flag_constant_spritetrail = true;
 
         // prevent player from interacting with other objects
         gameObject.GetComponent<Collider2D>().enabled = false;
 
-
+        Vector3 currentPosition = starting_position;
+        float passedTime = 0;
         // interpolate position to target
+        while(passedTime <= duration)
+        {
+            passedTime += Time.deltaTime;
+            float alpha = passedTime / duration;
+
+            currentPosition = Vector3.Lerp(starting_position, target_position, tween_interpolation_curve.Evaluate(alpha));
+            transform.position = currentPosition;
+
+            yield return null;
+        }
+
+        if (currentPosition != target_position)
+        {
+            transform.position = target_position;
+        }
 
 
         // run when tween finishes
@@ -447,9 +454,7 @@ public class player : MonoBehaviour
 
         if (pState == PlayerState.State_normal)
         {
-            // turn collisions back on?
-		    //set_collision_layer_bit(1, false)
-            //set_collision_mask_bit(1, false)
+            gameObject.GetComponent<Collider2D>().enabled = true;
         }
     }
 
