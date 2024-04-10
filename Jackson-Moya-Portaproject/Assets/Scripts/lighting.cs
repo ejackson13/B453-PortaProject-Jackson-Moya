@@ -50,7 +50,7 @@ public class lighting : MonoBehaviour
     public IEnumerator LightReset() //light reset
     {
         yield return new WaitForSeconds(0.5f); //wait 0.5 seconds 
-        SceneManager.LoadScene("EvanTestScene"); //reloads the scene from the start
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //reloads the scene from the start
     }
 
     void OnTriggerEnter2D(Collider2D collider) //trigger detection
