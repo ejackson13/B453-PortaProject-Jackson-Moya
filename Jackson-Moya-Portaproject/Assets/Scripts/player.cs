@@ -14,7 +14,7 @@ public class player : MonoBehaviour
 {
 
     private bool bWasOnFloor = false;
-    private Vector2 vectorVelocity;
+    public Vector2 vectorVelocity;
     private Vector2 vector_gravity;
     public float last_horizontal_direction = 1; // seems to only be -1, 0, or 1
     private bool active = true;
@@ -57,7 +57,7 @@ public class player : MonoBehaviour
     [SerializeField] private SpriteRenderer nSprite; // sprite type instead?
     [SerializeField] private GameObject eyes;
     //onready var nSprEyes:Sprite = $eyes
-    //onready var nAnimationPlayer:AnimationPlayer = $animation_player
+    [SerializeField] Animator nAnimationPlayer;
     //onready var nDiveAim:Node2D =$dive_aim/dive_aim
     [SerializeField] private GameObject dive_aim;
     [SerializeField] private Collider2D dive_aim_collider;
@@ -70,6 +70,7 @@ public class player : MonoBehaviour
     {
         //nSprEyes.visible = false
         //nVignette.modulate.a = 0
+        nAnimationPlayer.Play("player_idle", 0);
 
         // initialize dive aimer rotation
         Vector3 newRot = dive_aim.transform.eulerAngles;
@@ -85,17 +86,17 @@ public class player : MonoBehaviour
 
         if (pState == PlayerState.State_dive)
         {
-            anim = "idle";
+            anim = "player_idle";
         }
         else
         {
             if (is_on_floor())
             {
-                anim = Mathf.Abs(vectorVelocity.x) <= 10 ? "idle" : "walk";
+                anim = Mathf.Abs(vectorVelocity.x) <= .01 ? "player_idle" : "player_walk";
             }
             else
             {
-                anim = vectorVelocity.y < 0 ? "going_down" : "going_up";
+                anim = vectorVelocity.y < 0 ? "player_fall" : "player_up1";
             }
         }
 
@@ -135,19 +136,16 @@ public class player : MonoBehaviour
 
 
 
+        if (!nAnimationPlayer.GetCurrentAnimatorStateInfo(0).IsName(anim))
+        {
+            nAnimationPlayer.Play(anim, 0);
+        }
+
+
         /*
-         * Animations
-        if (nAnimationPlayer.current_animation != anim):
-		    nAnimationPlayer.play(anim)
-
-
+         * Animation
         if flag_constant_spritetrail:
 		    _create_spritetrail()
-
-
-         * Resetting scene
-        if Input.is_action_just_pressed('ui_reset'):
-		    var _v = get_tree().reload_current_scene()
         */
 
 
