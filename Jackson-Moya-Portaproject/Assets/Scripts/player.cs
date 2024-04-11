@@ -56,20 +56,17 @@ public class player : MonoBehaviour
 
     [SerializeField] private SpriteRenderer nSprite; // sprite type instead?
     [SerializeField] private GameObject eyes;
-    //onready var nSprEyes:Sprite = $eyes
     [SerializeField] Animator nAnimationPlayer;
-    //onready var nDiveAim:Node2D =$dive_aim/dive_aim
     [SerializeField] private GameObject dive_aim;
     [SerializeField] private Collider2D dive_aim_collider;
-    //onready var nTwnDive:Tween = $twn_dive
-    //onready var nVignette:Sprite = $layerVignette/sprVignette
+    [SerializeField] SpriteRenderer nVignette;
 
 
     // Start is called before the first frame update
     void Start()
     {
         //nSprEyes.visible = false
-        //nVignette.modulate.a = 0
+        nVignette.color = new Color(0, 0, 0, 0); // set vignette to be transparent
         nAnimationPlayer.Play("player_idle", 0);
 
         // initialize dive aimer rotation
@@ -82,8 +79,10 @@ public class player : MonoBehaviour
     void Update()
     {
         nSprite.flipX = last_horizontal_direction != 1;
+        nVignette.transform.position = Vector3.zero; // make sure the vignette stays centered as the player moves
 
 
+        // determine which animation to play
         if (pState == PlayerState.State_dive)
         {
             anim = "player_idle";
@@ -136,6 +135,7 @@ public class player : MonoBehaviour
 
 
 
+        // play the selected animation
         if (!nAnimationPlayer.GetCurrentAnimatorStateInfo(0).IsName(anim))
         {
             nAnimationPlayer.Play(anim, 0);
@@ -204,9 +204,7 @@ public class player : MonoBehaviour
 
     private void _state_normal(float _delta, Vector2 vector_direction_input)
     {
-
-        // I believe this is for the visual effect that appears when the player enters a block
-        //nVignette.modulate.a = lerp(nVignette.modulate.a, 0, 0.1);
+        nVignette.color = new Color(0, 0, 0, Mathf.Lerp(nVignette.color.a, 0, 0.1f * (Time.deltaTime / (1f / 60f)))); // fade out vignette
 
         //set_collision_layer_bit(0, true)
 
@@ -308,13 +306,11 @@ public class player : MonoBehaviour
                 Vector2 vector_target_position = new Vector2(Mathf.Floor(cursor_position.x) + .5f, Mathf.Floor(cursor_position.y) + .5f);
 
 
-                //var _v = nTwnDive.interpolate_property(self, 'global_position', self.global_position, vector_target_position, twn_duration, Tween.TRANS_QUART, Tween.EASE_OUT)
                 StartCoroutine(DiveTween(starting_position, vector_target_position, twn_duration));
                     
 
                 /*
                  * Animation stuff
-                nAnimationPlayer.play("idle")
 
                 create_splash(20, 30, -(self.global_position - vector_target_position), (self.global_position - vector_target_position) / 2)
 
@@ -368,7 +364,7 @@ public class player : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         // animation
-        //nVignette.modulate.a = lerp(nVignette.modulate.a, 1, 0.1)
+        nVignette.color = new Color(0, 0, 0, Mathf.Lerp(nVignette.color.a, 1, 0.1f * (Time.deltaTime/(1f/60f)))); // fade in vignette
 
         if (Input.GetKeyDown(KeyCode.X)) 
         {
