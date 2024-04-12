@@ -30,11 +30,13 @@ public class lightbutton : MonoBehaviour
         }
     }
 
+    /*
     public IEnumerator LightReset() //light reset
     {
         yield return new WaitForSeconds(0.5f); //wait 0.5 seconds 
         SceneManager.LoadScene("EvanTestScene"); //reloads the scene from the start
     }
+    */
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -43,7 +45,8 @@ public class lightbutton : MonoBehaviour
         {
             if (classInstance.activated == true) //if light is on, then
             {
-                StartCoroutine(LightReset()); //reset the scene!
+                //StartCoroutine(LightReset()); //reset the scene!
+                GameManager.Instance.ResetStage();
             }
         }
     }

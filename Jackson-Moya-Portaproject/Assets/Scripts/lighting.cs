@@ -47,18 +47,22 @@ public class lighting : MonoBehaviour
         }
     }
 
+    // moving the code to reset the level to a game manager singleton
+    /*
     public IEnumerator LightReset() //light reset
     {
         yield return new WaitForSeconds(0.5f); //wait 0.5 seconds 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //reloads the scene from the start
     }
+    */
 
     void OnTriggerEnter2D(Collider2D collider) //trigger detection
     {
         if (collider.gameObject.tag == "Player" && isLightOn == true) //if the player walks into the light when it's turned on, then run the code
         {
             //Debug.Log("Entered Light");
-            StartCoroutine(LightReset()); //starts the coroutine for the light reset
+            //StartCoroutine(LightReset()); //starts the coroutine for the light reset
+            GameManager.Instance.ResetStage();
         }
     }
 }

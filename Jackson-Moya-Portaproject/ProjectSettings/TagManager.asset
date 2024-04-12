@@ -50,3 +50,6 @@ TagManager:
   - name: Player
     uniqueID: 612366045
     locked: 0
+  - name: Screen Tint
+    uniqueID: 901196781
+    locked: 0
