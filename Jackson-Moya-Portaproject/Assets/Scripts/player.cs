@@ -254,7 +254,7 @@ public class player : MonoBehaviour
             jumpBuffer = 0;
 
             // animation
-            //_twn_squishy()
+            StartCoroutine(JumpSquishTween());
 
             // jump sound effect
             //$sounds / snd_jump.play()
@@ -342,16 +342,19 @@ public class player : MonoBehaviour
         }
         */
 
-        /*
-         * Particle effects and animation
-        if !self.bWasOnFloor and self.is_on_floor():
+        if(!bWasOnFloor && is_on_floor())
+        {
+            /*
+             * particle effects
 		    var i = fxPlayerLandDust.instance()
 
             i.global_position = self.global_position - vSpriteOffset
             get_parent().add_child(i)
+            */
 
-            tweenLandSquish()
-        */
+            //StopCoroutine(JumpSquishTween());
+            StartCoroutine(LandSquishTween());
+        }
 
         bWasOnFloor = is_on_floor();
     }
@@ -450,6 +453,64 @@ public class player : MonoBehaviour
         {
             gameObject.GetComponent<Collider2D>().enabled = true;
         }
+    }
+
+
+    private IEnumerator JumpSquishTween()
+    {
+        Debug.Log("Jump Tween");
+
+        StopCoroutine(LandSquishTween());
+        yield return new WaitForEndOfFrame();
+
+        //$twn_squishy.interpolate_property($sprite, 'scale', $sprite.scale * scale_vector, Vector2(1, 1), 0.5, Tween.TRANS_QUINT, Tween.EASE_OUT)
+        float duration = .5f;
+        Vector3 currentScale = new Vector3(.5f, 1.5f, 1);
+        Vector3 targetScale = new Vector3(1, 1, 1);
+        float passedTime = 0;
+        // interpolate position to target
+        while (passedTime <= duration)
+        {
+            passedTime += Time.deltaTime;
+            float alpha = passedTime / duration;
+
+            currentScale = Vector3.Lerp(currentScale, targetScale, alpha);
+            nSprite.transform.localScale = currentScale;
+
+            yield return null;
+        }
+        nSprite.transform.localScale = targetScale;
+    }
+    
+    private IEnumerator LandSquishTween()
+    {
+        Debug.Log("Land Tween");
+        //$twn_squishy.interpolate_property($sprite, 'scale', $sprite.scale * scale_vector, Vector2(1,1), 0.5, Tween.TRANS_QUINT, Tween.EASE_OUT)
+        float duration = .5f;
+        Vector3 currentScale = new Vector3(1.5f, .5f, 1);
+        Vector3 targetScale = new Vector3(1, 1, 1);
+        float passedTime = 0;
+        Vector3 currentPos = nSprite.transform.localPosition;
+        // interpolate position to target
+        while (passedTime <= duration)
+        {
+            passedTime += Time.deltaTime;
+            float alpha = passedTime / duration;
+
+            currentScale = Vector3.Lerp(currentScale, targetScale, alpha);
+            nSprite.transform.localScale = currentScale;
+
+            // adjust position so it stays on ground
+            currentPos = nSprite.transform.localPosition;
+            currentPos.y = -1 * ((1-currentScale.y) / 2);
+            nSprite.transform.localPosition = currentPos;
+
+            yield return null;
+        }
+        nSprite.transform.localScale = targetScale;
+
+        currentPos.y = Mathf.Floor(transform.position.y) + (1 * .536f);
+        nSprite.transform.localPosition = Vector3.zero;
     }
 
 
