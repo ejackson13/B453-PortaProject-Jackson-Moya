@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
 using UnityEngine.Rendering.Universal;
@@ -50,13 +51,13 @@ public class player : MonoBehaviour
     public AnimationCurve tween_interpolation_curve;
     //const spritetrail= preload('res://Scenes/spritetrail/sprite_trail.tscn')
     //const spherizeShader= preload("res://Scenes/spherizeShader.tscn")
-    //const drop= preload("res://Scenes/drop.tscn")
-    //const fxPlayerJumpDust = preload("res://Scenes/fxPlayerJumpDust.tscn")
-    //const fxPlayerLandDust = preload("res://Scenes/fxPlayerLandDust.tscn")
+    [SerializeField] private GameObject drop;
 
     [SerializeField] private SpriteRenderer nSprite; // sprite type instead?
     [SerializeField] private GameObject eyes;
     [SerializeField] Animator nAnimationPlayer;
+    [SerializeField] DustAnimationHandler jumpDustAnimator;
+    [SerializeField] DustAnimationHandler landDustAnimator;
     [SerializeField] private GameObject dive_aim;
     [SerializeField] private Collider2D dive_aim_collider;
     [SerializeField] SpriteRenderer nVignette;
@@ -262,9 +263,7 @@ public class player : MonoBehaviour
             vectorVelocity.y = jump_force;
 
             // for particle effects
-            //var i = fxPlayerJumpDust.instance();
-            //i.global_position = self.global_position - vSpriteOffset
-            //get_parent().add_child(i)
+            PlayDustAnimation(jumpDustAnimator);
         }
 
 
@@ -307,13 +306,11 @@ public class player : MonoBehaviour
 
 
                 StartCoroutine(DiveTween(starting_position, vector_target_position, twn_duration));
-                    
 
+
+                CreateSplash(20, 30, -((Vector2)transform.position - vector_target_position), ((Vector2)transform.position - vector_target_position) / 2);
                 /*
                  * Animation stuff
-
-                create_splash(20, 30, -(self.global_position - vector_target_position), (self.global_position - vector_target_position) / 2)
-
                 createSpherize(vector_target_position)
 			    $camera2D.minorShake()
                 */
@@ -344,13 +341,7 @@ public class player : MonoBehaviour
 
         if(!bWasOnFloor && is_on_floor())
         {
-            /*
-             * particle effects
-		    var i = fxPlayerLandDust.instance()
-
-            i.global_position = self.global_position - vSpriteOffset
-            get_parent().add_child(i)
-            */
+            PlayDustAnimation(landDustAnimator);
 
             //StopCoroutine(JumpSquishTween());
             StartCoroutine(LandSquishTween());
@@ -515,6 +506,23 @@ public class player : MonoBehaviour
 
 
 
+    private void CreateSplash(int minimum, int maximum, Vector2 direction, Vector2 offset)
+    {
+        int numSplashes = UnityEngine.Random.Range(minimum, maximum);
+
+        for (int i=0; i<numSplashes; i++)
+        {
+            GameObject inst = Instantiate(drop);
+            inst.transform.position = (Vector2)transform.position + (offset * new Vector2(UnityEngine.Random.Range(-0.5f, 0.5f), UnityEngine.Random.Range(-0.5f, 0.5f)));
+
+            inst.GetComponent<Drop>().direction = direction.normalized;
+        }
+
+
+    }
+
+
+
     private bool is_on_floor()
     {
         // check if the bottom of the collision box contacts the ground
@@ -531,4 +539,11 @@ public class player : MonoBehaviour
         return false;
     }
 
+
+    
+    private void PlayDustAnimation(DustAnimationHandler dustPlayer)
+    {
+        dustPlayer.gameObject.SetActive(true);
+        dustPlayer.PlayDustAnimation();
+    }
 }
