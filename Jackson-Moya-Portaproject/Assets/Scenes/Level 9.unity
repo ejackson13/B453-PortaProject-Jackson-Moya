@@ -3795,7 +3795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7992ff42c7764f7fba39d6d84c3598a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSpin: 0
+  isSpin: 1
   isMoving: 0
   speed: 25
   movementDistance: 1
