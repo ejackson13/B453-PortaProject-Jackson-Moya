@@ -32,18 +32,18 @@ public class lighting : MonoBehaviour
     {
         if (isLightOn == true) //if light is on
         {
-            yield return new WaitForSeconds(3); //wait 3 secs
+            yield return new WaitForSeconds(secondsForLight); //wait 3 secs
             spriteLight.sprite = lightOffSprite; //turns light off
             isLightOn = false; //bool switched to false
-            yield return new WaitForSeconds(3); //wait 3 secs again
+            yield return new WaitForSeconds(secondsForLight); //wait 3 secs again
 
         }
         else
         {
-            yield return new WaitForSeconds(3); //wait 3 secs
+            yield return new WaitForSeconds(secondsForLight); //wait 3 secs
             spriteLight.sprite = lightOnSprite; //turn light on
             isLightOn = true; //set bool to true
-            yield return new WaitForSeconds(3); //wait 3 secs again
+            yield return new WaitForSeconds(secondsForLight); //wait 3 secs again
         }
     }
 
