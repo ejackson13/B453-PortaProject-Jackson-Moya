@@ -10,6 +10,7 @@ public class lightbutton : MonoBehaviour
     public Sprite lightSourceOffSprite;
     public SpriteRenderer spriteLight;
     public Button classInstance;
+    public bool isOn;
     // Start is called before the first frame update
     void Start()
     {

@@ -8,11 +8,11 @@ public class lighting : MonoBehaviour
 {
     //initialized variables 
     public int secondsForLight = 3; //seconds for light switching on and off
-    private bool isLightOn; //bool to see if light is on
+    public bool isLightOn; //bool to see if light is on
     public Sprite lightOnSprite; //sprite for the light being turned on
     public Sprite lightOffSprite; //sprite for the light being turned off
     SpriteRenderer spriteLight; //the sprite for the light
-
+    
     public GameObject player; //the player
 
     // Start is called before the first frame update
