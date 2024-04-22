@@ -3656,7 +3656,7 @@ PrefabInstance:
       addedObject: {fileID: 654344093}
     - targetCorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 654344095}
+      addedObject: {fileID: 654344096}
   m_SourcePrefab: {fileID: 100100000, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
 --- !u!4 &654344091 stripped
 Transform:
@@ -3681,6 +3681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 100
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 1087349199}
@@ -3689,8 +3690,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
   m_PrefabInstance: {fileID: 654344090}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &654344095
-BoxCollider2D:
+--- !u!70 &654344096
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3721,19 +3722,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035122156, y: -0.011638045}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 6.4}
-    newSize: {x: 6.4, y: 6.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6.329756, y: 5.9185495}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.0070101875, y: 0.06543098}
+  m_Size: {x: 4.419969, y: 5.1065097}
+  m_Direction: 0
 --- !u!1 &674670187
 GameObject:
   m_ObjectHideFlags: 0
@@ -4068,7 +4059,7 @@ PrefabInstance:
       addedObject: {fileID: 1165861616}
     - targetCorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1165861618}
+      addedObject: {fileID: 1165861619}
   m_SourcePrefab: {fileID: 100100000, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
 --- !u!4 &1165861614 stripped
 Transform:
@@ -4093,6 +4084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 100
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 1087349199}
@@ -4101,8 +4093,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
   m_PrefabInstance: {fileID: 1165861613}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1165861618
-BoxCollider2D:
+--- !u!70 &1165861619
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4133,19 +4125,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08740091, y: 0.013943553}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 6.4}
-    newSize: {x: 6.4, y: 6.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 5.001587, y: 5.8143663}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.0070101875, y: 0.06543098}
+  m_Size: {x: 4.419969, y: 5.1065097}
+  m_Direction: 0
 --- !u!1 &1806427961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,7 +4540,7 @@ PrefabInstance:
       addedObject: {fileID: 1896792130}
     - targetCorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1896792132}
+      addedObject: {fileID: 1896792133}
   m_SourcePrefab: {fileID: 100100000, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
 --- !u!4 &1896792128 stripped
 Transform:
@@ -4583,6 +4565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 100
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 1087349199}
@@ -4591,8 +4574,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
   m_PrefabInstance: {fileID: 1896792127}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1896792132
-BoxCollider2D:
+--- !u!70 &1896792133
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4623,19 +4606,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09765756, y: -0.10036492}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 6.4}
-    newSize: {x: 6.4, y: 6.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6.045704, y: 5.6456304}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.0070101875, y: 0.06543098}
+  m_Size: {x: 4.419969, y: 5.1065097}
+  m_Direction: 0
 --- !u!1001 &1951536738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4659,6 +4632,22 @@ PrefabInstance:
     - target: {fileID: 104689222749484972, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.3535
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5584515
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9376769
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.020774275
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.020774603
       objectReference: {fileID: 0}
     - target: {fileID: 4650405947080880366, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
       propertyPath: m_Name
@@ -4905,6 +4894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 3
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 0}

@@ -2461,6 +2461,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.50810605
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9628495
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.045946985
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0333609
+      objectReference: {fileID: 0}
     - target: {fileID: 4650405947080880366, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
       propertyPath: m_Name
       value: player
@@ -2471,7 +2487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7132032095637251265, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4665408
+      value: 1.555
       objectReference: {fileID: 0}
     - target: {fileID: 7132032095637251265, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
       propertyPath: m_LocalPosition.z

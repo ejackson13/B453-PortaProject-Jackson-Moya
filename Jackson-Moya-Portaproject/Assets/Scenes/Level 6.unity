@@ -284,6 +284,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.6335
       objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5584515
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9376769
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.020774275
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.020774603
+      objectReference: {fileID: 0}
     - target: {fileID: 4650405947080880366, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
       propertyPath: m_Name
       value: player
@@ -676,6 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 3
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 162911010}
@@ -895,6 +912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 3
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 162911010}

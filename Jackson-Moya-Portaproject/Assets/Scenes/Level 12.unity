@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 3
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 521994397}
@@ -448,6 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 3
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 521994397}
@@ -514,6 +516,22 @@ PrefabInstance:
     - target: {fileID: 104689222749484972, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.3544
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5584515
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9376769
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.020774275
+      objectReference: {fileID: 0}
+    - target: {fileID: 168516201633948037, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.020774603
       objectReference: {fileID: 0}
     - target: {fileID: 4650405947080880366, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
       propertyPath: m_Name
@@ -797,6 +815,7 @@ MonoBehaviour:
   lightSourceOffSprite: {fileID: 0}
   spriteLight: {fileID: 1363543525}
   classInstance: {fileID: 594413773}
+  isOn: 0
 --- !u!70 &601083089
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1283,6 +1302,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2714559231398972463, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1717340157}
+    - targetCorrespondingSourceObject: {fileID: 2714559231398972463, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1717340158}
     - targetCorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
       addedObject: {fileID: 601083088}
@@ -1421,6 +1443,23 @@ MonoBehaviour:
   controlPoint1: {fileID: 263512825}
   controlPoint2: {fileID: 909841148}
   numberOfPoints: 50
+--- !u!114 &1717340158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717340154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a4ecb39ae934d9cb63be92b848eaff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightSourceOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
+  lightSourceOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
+  spriteLight: {fileID: 1900093133}
+  classInstance: {fileID: 594413773}
+  isOn: 0
 --- !u!1 &1794568232
 GameObject:
   m_ObjectHideFlags: 0
@@ -4431,6 +4470,11 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!212 &1900093133 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6679366137091792772, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
+  m_PrefabInstance: {fileID: 1717340153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2031695005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4528,6 +4572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsForLight: 3
+  isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   player: {fileID: 521994397}
