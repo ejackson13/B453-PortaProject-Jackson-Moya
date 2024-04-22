@@ -13,7 +13,6 @@ using static UnityEditor.ShaderData;
 
 public class player : MonoBehaviour
 {
-
     private bool bWasOnFloor = false;
     public Vector2 vectorVelocity;
     private Vector2 vector_gravity;
@@ -21,7 +20,6 @@ public class player : MonoBehaviour
     private bool active = true;
     private string anim = "";
     private Vector2 vSpriteOffset = new Vector2(0,.5f); // changed from (0, 8) to use unity units instead of pixels
-
     private enum PlayerState
     { 
         State_normal, 
@@ -81,7 +79,6 @@ public class player : MonoBehaviour
     {
         nSprite.flipX = last_horizontal_direction != 1;
         nVignette.transform.position = Vector3.zero; // make sure the vignette stays centered as the player moves
-
 
         // determine which animation to play
         if (pState == PlayerState.State_dive)

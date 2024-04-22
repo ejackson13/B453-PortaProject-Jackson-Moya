@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private Color blueTint = new Color32(255, 255, 255, 255);  // I don't think this is needed for this implementation
 
     private SpriteRenderer screenTint;
+
+    public TMP_Text text;
 
     private void Awake()
     {
@@ -36,6 +39,14 @@ public class GameManager : MonoBehaviour
 
         // tint screen
         screenTint.color = noTint;
+        if (SceneManager.GetActiveScene().name == "Level 21")
+        {
+            text.text = "IN CASE YOU'RE INTERESTED, YOUR TIME WAS: " + TimerManager.Instance.Timer;
+        }
+        else
+        {
+            text.text = null;
+        }
 
     }
 
