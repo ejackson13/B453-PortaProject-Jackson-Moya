@@ -4193,6 +4193,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6393067596873343454, guid: 3ae5a162ef9eb4ea4a372fca83652547, type: 3}
+      propertyPath: maximumLightMaskSize
+      value: 4.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
