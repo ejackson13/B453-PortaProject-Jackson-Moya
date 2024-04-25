@@ -1845,6 +1845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8dfc913a3d64fbaab0396450e55932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
 --- !u!4 &890958012
 Transform:
   m_ObjectHideFlags: 0
@@ -2205,6 +2206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 7786014926731604727, guid: 804ab48c0907ccf4092ef30ec467d7bb, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 2005493420}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2450,6 +2455,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+--- !u!4 &2005493420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7132032095637251265, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+  m_PrefabInstance: {fileID: 2005493419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2027857993
 GameObject:
   m_ObjectHideFlags: 0

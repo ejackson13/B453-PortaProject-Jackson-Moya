@@ -4753,6 +4753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 7786014926731604727, guid: 804ab48c0907ccf4092ef30ec467d7bb, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1864659722}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5123,6 +5127,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+--- !u!4 &1864659722 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7132032095637251265, guid: dc2b7657fdf2deb4ab43bd3490712d7f, type: 3}
+  m_PrefabInstance: {fileID: 1864659721}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

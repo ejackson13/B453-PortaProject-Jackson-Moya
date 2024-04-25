@@ -9762,6 +9762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5901987908015591318}
+  - component: {fileID: 7786014926731604727}
   m_Layer: 0
   m_Name: Parallax Bkg
   m_TagString: Untagged
@@ -9784,3 +9785,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1073568649067274288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7786014926731604727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7915059652429591114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f10cdcf6dd4864da8130f191b575d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  backgroundSprites:
+  - {fileID: 1318402529, guid: 67b0bb330e18448b5b5bab533c321425, type: 3}
+  - {fileID: 1744615297, guid: 67b0bb330e18448b5b5bab533c321425, type: 3}
+  - {fileID: 514751278, guid: 67b0bb330e18448b5b5bab533c321425, type: 3}
+  - {fileID: 1161405785, guid: 67b0bb330e18448b5b5bab533c321425, type: 3}
+  - {fileID: -1538092329, guid: 67b0bb330e18448b5b5bab533c321425, type: 3}
+  - {fileID: 364352216, guid: 67b0bb330e18448b5b5bab533c321425, type: 3}
