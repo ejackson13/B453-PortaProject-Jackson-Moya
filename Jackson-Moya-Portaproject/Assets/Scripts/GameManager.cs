@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
         // make sure this doesn't reload when a new scene is loaded
         DontDestroyOnLoad(this.gameObject);
+        SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
     // Start is called before the first frame update
@@ -74,9 +75,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // debug next level
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+            NextLevel();
+        }
     }
 
+    void OnSceneChanged(Scene current, Scene next)
+    {
+        if (current != next)
+        {
+            Instance.StartCoroutine(NewLevelLoadedCoroutine());
+        }
+    }
 
     public void ResetStage()
     {

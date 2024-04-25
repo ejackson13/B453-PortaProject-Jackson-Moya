@@ -60,6 +60,15 @@ public class player : MonoBehaviour
     [SerializeField] private Collider2D dive_aim_collider;
     [SerializeField] SpriteRenderer nVignette;
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioSource sfxPlayer;
+    [SerializeField] AudioClip jumpSfx;
+    [SerializeField] AudioClip landSfx;
+    [SerializeField] AudioClip diveSfx;
+    [SerializeField] AudioClip dive1Sfx;
+    [SerializeField] AudioClip diveawaySfx;
+    [SerializeField] AudioClip[] footstepSfx;
+
 
     // Start is called before the first frame update
     void Start()
@@ -255,6 +264,8 @@ public class player : MonoBehaviour
             StartCoroutine(JumpSquishTween());
 
             // jump sound effect
+            sfxPlayer.clip = jumpSfx;
+            sfxPlayer.Play();
             //$sounds / snd_jump.play()
 
             vectorVelocity.y = jump_force;
@@ -287,13 +298,19 @@ public class player : MonoBehaviour
                 // music change
                 //global.changeToLowPassMusic()
 
-                /* 
-                 * sound effects
-                if randf() <= 0.5:
-				    $sounds / snd_dive.play()
-                else:
-				    $sounds / snd_dive1.play()
-                */
+                // sound effects
+                if (UnityEngine.Random.value <= 0.5) 
+                {
+                    sfxPlayer.clip = diveSfx;
+                    //$sounds / snd_dive.play()
+                }
+                else 
+                {
+                    sfxPlayer.clip = dive1Sfx;
+				    //$sounds / snd_dive1.play()
+                }
+                sfxPlayer.Play();
+                
 
                 pState = PlayerState.State_dive;
                 Vector2 cursor_position = dive_aim.transform.Find("Phase Point").transform.position;
@@ -328,16 +345,13 @@ public class player : MonoBehaviour
 
         GetComponent<Rigidbody2D>().velocity = vectorVelocity;
 
-        /*
-         * landing sound effect
-        if (initialVelocity.y != vectorVelocity.y and self.is_on_floor())
-        { 
-		    $sounds / snd_land.play()
-        }
-        */
 
         if(!bWasOnFloor && is_on_floor())
         {
+            sfxPlayer.clip = landSfx;
+            sfxPlayer.Play();
+            //$sounds / snd_land.play()
+
             PlayDustAnimation(landDustAnimator);
 
             //StopCoroutine(JumpSquishTween());
@@ -370,8 +384,10 @@ public class player : MonoBehaviour
             /*
              * music and sfx stuff
 		    global.changeFromLowPassMusic()
-		    $sounds/snd_dive_away.play()
             */
+            sfxPlayer.clip = diveawaySfx;
+            sfxPlayer.Play();
+            //$sounds/snd_dive_away.play()
             pState = PlayerState.State_normal;
 
             Vector2 cursor_position = dive_aim.transform.Find("Phase Point").transform.position;
@@ -384,9 +400,9 @@ public class player : MonoBehaviour
             StartCoroutine(DiveTween(starting_position, vector_target_position, twn_duration * .8f));
 
 
+            CreateSplash(10, 15, -((Vector2)transform.position - vector_target_position), ((Vector2)transform.position - vector_target_position) / 2);
             /*
              * animation stuff
-            create_splash(10,15, (self.global_position-vector_target_position),(self.global_position-vector_target_position)/2)
 		    createSpherize()
 		    $camera2D.minorShake()
             */
@@ -542,5 +558,14 @@ public class player : MonoBehaviour
     {
         dustPlayer.gameObject.SetActive(true);
         dustPlayer.PlayDustAnimation();
+    }
+
+
+
+    public void PlayFootstepSfx()
+    {
+        int randi = UnityEngine.Random.Range(0, footstepSfx.Length);
+        sfxPlayer.clip = footstepSfx[randi];
+        sfxPlayer.Play();
     }
 }
