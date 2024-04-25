@@ -428,7 +428,8 @@ public class player : MonoBehaviour
         flag_constant_spritetrail = true;
 
         // prevent player from interacting with other objects
-        gameObject.GetComponent<Collider2D>().enabled = false;
+        //gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 
         Vector3 currentPosition = starting_position;
         float passedTime = 0;
@@ -457,7 +458,8 @@ public class player : MonoBehaviour
 
         if (pState == PlayerState.State_normal)
         {
-            gameObject.GetComponent<Collider2D>().enabled = true;
+            //gameObject.GetComponent<Collider2D>().enabled = true;
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         }
     }
 
@@ -541,7 +543,8 @@ public class player : MonoBehaviour
     private bool is_on_floor()
     {
         // check if the bottom of the collision box contacts the ground
-        RaycastHit2D[] hits = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y), Vector2.down, (GetComponent<BoxCollider2D>().size.y / 2) + .05f);
+        //RaycastHit2D[] hits = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y), Vector2.down, (GetComponent<BoxCollider2D>().size.y / 2) + .05f);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y), Vector2.down, (GetComponent<CapsuleCollider2D>().size.y / 2) + .05f);
 
         foreach (RaycastHit2D hit in hits)
         {
