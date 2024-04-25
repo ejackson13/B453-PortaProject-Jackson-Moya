@@ -7,7 +7,7 @@ public class TimerManager : MonoBehaviour
 {
     public static TimerManager Instance { get; private set; }
 
-    private float timer = 0f;
+    public float timer = 0f;
     public float Timer => timer; // Public getter to access the timer
 
     private Coroutine timerCoroutine;
@@ -61,6 +61,3 @@ public class TimerManager : MonoBehaviour
         }
     }
 }
-
-
-

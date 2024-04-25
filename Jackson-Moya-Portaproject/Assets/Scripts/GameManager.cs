@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     private SpriteRenderer screenTint;
 
-    public TMP_Text text;
-
     [SerializeField] private float transitionDuration = 0.66f;
     [SerializeField] private float transitionBaseDelay = 0.1f;
     [SerializeField] private float transitionDelay = 0.02f;
@@ -40,7 +38,6 @@ public class GameManager : MonoBehaviour
 
         // make sure this doesn't reload when a new scene is loaded
         DontDestroyOnLoad(this.gameObject);
-        SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
     // Start is called before the first frame update
@@ -50,16 +47,6 @@ public class GameManager : MonoBehaviour
 
         // tint screen
         screenTint.color = noTint;
-        if (SceneManager.GetActiveScene().name == "Level 21")
-        {
-            text.text = "IN CASE YOU'RE INTERESTED, YOUR TIME WAS: " + TimerManager.Instance.Timer;
-        }
-        else
-        {
-            if (text != null)
-                text.text = null;
-        }
-
         // create sprite masks
         int rowNum = 0;
         for (float i=0; i<=1; i+=lightMaskSpacingX)  // iterate using viewport to keep consistent number of masks
@@ -90,26 +77,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-
-    void OnSceneChanged(Scene current, Scene next)
-    {
-        if (SceneManager.GetActiveScene().name == "Level 21")
-        {
-            text.text = "IN CASE YOU'RE INTERESTED, YOUR TIME WAS: " + TimerManager.Instance.Timer;
-        }
-        else
-        {
-            if (text != null)
-                text.text = null;
-        }
-
-
-        if (current != next)
-        {
-            Instance.StartCoroutine(NewLevelLoadedCoroutine());          
-        }
-    }
-    
 
     public void ResetStage()
     {
