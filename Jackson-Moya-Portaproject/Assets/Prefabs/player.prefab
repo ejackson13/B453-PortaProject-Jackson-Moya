@@ -155,8 +155,8 @@ Transform:
   m_GameObject: {fileID: 1580096757095183623}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 0.56979, y: 0.4, z: 0.65}
+  m_LocalPosition: {x: 0.715, y: 0, z: 0}
+  m_LocalScale: {x: 0.92, y: 0.59, z: 0.65}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8110979968791424766}
@@ -720,10 +720,10 @@ MonoBehaviour:
   last_horizontal_direction: 0
   flag_constant_spritetrail: 0
   color_spritetrail: {r: 0, g: 0, b: 0, a: 0}
-  vector_gravity_up: {x: 0, y: -10}
-  vector_gravity_down: {x: 0, y: -12.5}
-  maximum_speed: 3
-  jump_force: 5
+  vector_gravity_up: {x: 0, y: -30}
+  vector_gravity_down: {x: 0, y: -37.5}
+  maximum_speed: 5
+  jump_force: 9.5
   tween_interpolation_curve:
     serializedVersion: 2
     m_Curve:
@@ -993,8 +993,8 @@ Transform:
   m_GameObject: {fileID: 6713929646819196203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 0.65, y: 0.45630845, z: 0.7415012}
+  m_LocalPosition: {x: 0.7149999, y: 0, z: 0}
+  m_LocalScale: {x: 0.9652459, y: 0.64, z: 0.77796847}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8110979968791424766}
@@ -1125,7 +1125,7 @@ Transform:
   m_GameObject: {fileID: 7399188200779129297}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2849, y: 0, z: 0}
+  m_LocalPosition: {x: 1.1680001, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

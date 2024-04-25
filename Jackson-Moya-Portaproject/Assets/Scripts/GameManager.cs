@@ -137,10 +137,6 @@ public class GameManager : MonoBehaviour
             normalMusicPlayer.volume = 1;
             normalMusicPlayer.Play();
         } 
-        else if (next.name == "Level 20")
-        {
-            StartCoroutine(FadeoutMusic(1f));
-        }
         else if (next.name == "Level 21")
         {
             normalMusicPlayer.clip = normalMusic;
@@ -159,7 +155,22 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        Instance.StartCoroutine(NextLevelCoroutine());
+        if (SceneManager.GetActiveScene().name == "Level 20")
+        {
+            StartCoroutine(FadeoutMusic(1f));
+            StartCoroutine(FinalLevelTransition());
+        }
+        else
+        { 
+            Instance.StartCoroutine(NextLevelCoroutine());
+        }
+    }
+
+
+    private IEnumerator FinalLevelTransition()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 
