@@ -23,6 +23,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float lightMaskSpacingY = 64f / 216f; // space the light masks so they match the number of circles in the original regardless of the resolution
     [SerializeField] private GameObject lightMaskObject;
 
+    [Header("Music")]
+    [SerializeField] AudioSource normalMusicPlayer;
+    [SerializeField] AudioClip normalMusic;
+    [SerializeField] AudioClip normalMusicLP;
+    [SerializeField] AudioClip intenseMusic;
+    [SerializeField] AudioClip intenseMusicLP;
+
+
+
 
     private void Awake()
     {
@@ -69,7 +78,15 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
+        if (SceneManager.GetActiveScene().buildIndex < 4 || SceneManager.GetActiveScene().buildIndex == 21)
+        {
+            normalMusicPlayer.clip = normalMusic;
+        }
+        else
+        {
+            normalMusicPlayer.clip = intenseMusic;
+        }
+        normalMusicPlayer.Play();
     }
 
     // Update is called once per frame
@@ -80,6 +97,12 @@ public class GameManager : MonoBehaviour
         {
             NextLevel();
         }
+
+        // mute music
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            normalMusicPlayer.mute = !normalMusicPlayer.mute;
+        }
     }
 
     void OnSceneChanged(Scene current, Scene next)
@@ -87,6 +110,29 @@ public class GameManager : MonoBehaviour
         if (current != next)
         {
             Instance.StartCoroutine(NewLevelLoadedCoroutine());
+        }
+
+        if (next.name == "Level 3")
+        {
+            StartCoroutine(FadeoutMusic(1f));
+        }
+        else if (next.name == "Level 4")
+        {
+            normalMusicPlayer.clip = intenseMusic;
+            normalMusicPlayer.time = 0;
+            normalMusicPlayer.volume = 1;
+            normalMusicPlayer.Play();
+        } 
+        else if (next.name == "Level 20")
+        {
+            StartCoroutine(FadeoutMusic(1f));
+        }
+        else if (next.name == "Level 21")
+        {
+            normalMusicPlayer.clip = normalMusic;
+            normalMusicPlayer.time = 0;
+            normalMusicPlayer.volume = 1;
+            normalMusicPlayer.Play();
         }
     }
 
@@ -222,5 +268,59 @@ public class GameManager : MonoBehaviour
             spriteMask.SetActive(false);
         }
 
+    }
+
+
+    private IEnumerator FadeoutMusic(float duration)
+    {
+        float startingVol = normalMusicPlayer.volume;
+        float currentVol;
+        float targetVol = 0;
+        float passedTime = 0;
+        // interpolate position to target
+        while (passedTime <= duration)
+        {
+            passedTime += Time.deltaTime;
+            float alpha = passedTime / duration;
+
+            currentVol = Mathf.Lerp(startingVol, targetVol, alpha);
+            normalMusicPlayer.volume = currentVol;
+
+            yield return null;
+        }
+        normalMusicPlayer.volume = targetVol;
+    }
+
+
+
+    public void ChangeToLowpassMusic()
+    {
+        float time = normalMusicPlayer.time;
+        if (normalMusicPlayer.clip == normalMusic)
+        {
+            normalMusicPlayer.clip = normalMusicLP;
+        } 
+        else if (normalMusicPlayer.clip == intenseMusic)
+        {
+            normalMusicPlayer.clip = intenseMusicLP;
+        }
+        normalMusicPlayer.time = time;
+        normalMusicPlayer.Play();
+    }
+
+
+    public void ChangeToRegularMusic()
+    {
+        float time = normalMusicPlayer.time;
+        if (normalMusicPlayer.clip == normalMusicLP)
+        {
+            normalMusicPlayer.clip = normalMusic;
+        }
+        else if (normalMusicPlayer.clip == intenseMusicLP)
+        {
+            normalMusicPlayer.clip = intenseMusic;
+        }
+        normalMusicPlayer.time = time;
+        normalMusicPlayer.Play();
     }
 }

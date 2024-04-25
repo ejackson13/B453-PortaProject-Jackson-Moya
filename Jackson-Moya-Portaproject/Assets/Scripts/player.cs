@@ -297,6 +297,7 @@ public class player : MonoBehaviour
             {
                 // music change
                 //global.changeToLowPassMusic()
+                GameManager.Instance.ChangeToLowpassMusic();
 
                 // sound effects
                 if (UnityEngine.Random.value <= 0.5) 
@@ -385,6 +386,7 @@ public class player : MonoBehaviour
              * music and sfx stuff
 		    global.changeFromLowPassMusic()
             */
+            GameManager.Instance.ChangeToRegularMusic();
             sfxPlayer.clip = diveawaySfx;
             sfxPlayer.Play();
             //$sounds/snd_dive_away.play()
