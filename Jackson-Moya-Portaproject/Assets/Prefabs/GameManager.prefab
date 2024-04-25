@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 514270060441697687}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4975, y: 2.061, z: -0.11600016}
-  m_LocalScale: {x: 31.51957, y: 18.202969, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.11600016}
+  m_LocalScale: {x: 24, y: 13.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8804804803476806055}
@@ -52,8 +52,9 @@ MonoBehaviour:
   transitionDuration: 0.66
   transitionBaseDelay: 0.1
   transitionDelay: 0.02
-  maximumLightMaskSize: 0.55
-  lightMaskSpacing: 64
+  maximumLightMaskSize: 4.5
+  lightMaskSpacingX: 0.16666667
+  lightMaskSpacingY: 0.2962963
   lightMaskObject: {fileID: 8774939626454485479}
 --- !u!212 &7786319216874744793
 SpriteRenderer:
@@ -94,7 +95,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 901196781
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.64705884, g: 0.64705884, b: 1, a: 0.078431375}
@@ -179,7 +180,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 901196781
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 88b66810922454eceab5321a9819db1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -269,8 +270,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 901196781
   m_BackSortingLayerID: 901196781
-  m_FrontSortingLayer: 3
-  m_BackSortingLayer: 3
+  m_FrontSortingLayer: 4
+  m_BackSortingLayer: 4
   m_FrontSortingOrder: 5
   m_BackSortingOrder: 5
   m_IsCustomRangeActive: 0
