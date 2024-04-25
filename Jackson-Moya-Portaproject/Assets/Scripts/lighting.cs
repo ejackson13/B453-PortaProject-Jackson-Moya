@@ -26,6 +26,10 @@ public class lighting : MonoBehaviour
     void Update()
     {
         StartCoroutine(Light()); //starts the light coroutine
+        if (GetComponent<Collider2D>() != null) 
+        {
+            GetComponent<Collider2D>().enabled = isLightOn;
+        }
     }
 
     IEnumerator Light()
