@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip intenseMusic;
     [SerializeField] AudioClip intenseMusicLP;
 
+    public bool isPaused = false;
+
 
 
 
@@ -92,6 +94,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isPaused)
+        {
+            return;
+        }
+
         // debug next level
         if (Input.GetKeyDown(KeyCode.End))
         {
@@ -102,6 +109,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             normalMusicPlayer.mute = !normalMusicPlayer.mute;
+        }
+
+        // pause
+        if (Input.GetKeyDown(KeyCode.Return) && !isPaused)
+        {
+            //isPaused = true;
+            StartCoroutine(Pause());
         }
     }
 
@@ -149,6 +163,28 @@ public class GameManager : MonoBehaviour
     }
 
 
+    private IEnumerator Pause()
+    {
+        Debug.Log("Pause Coroutine");
+        screenTint.color = pauseTint;
+        yield return new WaitForEndOfFrame();
+        Time.timeScale = 0f;
+        isPaused = true;
+        normalMusicPlayer.Pause();
+        while (isPaused)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                isPaused = false;
+            }
+            yield return null;
+        }
+        screenTint.color = noTint;
+        Time.timeScale = 1f;
+        normalMusicPlayer.UnPause();
+    }
+
+
     private IEnumerator ResetStageCoroutine()
     {
         // tint screen
@@ -158,6 +194,7 @@ public class GameManager : MonoBehaviour
 
         // pause game with time scale
         Time.timeScale = 0f;
+        isPaused = true;
 
 
         // wait .75 seconds (should be timeScale independent)
@@ -172,6 +209,7 @@ public class GameManager : MonoBehaviour
 
         // unpause
         Time.timeScale = 1f;
+        isPaused = false;
 
         // set regular tint
         screenTint.color = noTint;

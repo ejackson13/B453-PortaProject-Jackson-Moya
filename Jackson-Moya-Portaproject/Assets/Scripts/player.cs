@@ -85,7 +85,12 @@ public class player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        if (GameManager.Instance.isPaused)
+        {
+            return;
+        }
+
         nSprite.flipX = last_horizontal_direction != 1;
         nVignette.transform.position = Vector3.zero; // make sure the vignette stays centered as the player moves
 

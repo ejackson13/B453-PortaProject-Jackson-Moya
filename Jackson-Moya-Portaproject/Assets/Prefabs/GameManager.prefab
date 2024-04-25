@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redTint: {r: 0, g: 0, b: 1, a: 0.078431375}
-  pauseTint: {r: 0.29411766, g: 0.29411766, b: 0.29411766, a: 0.078431375}
+  pauseTint: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 0.5882353}
   transitionDuration: 0.66
   transitionBaseDelay: 0.1
   transitionDelay: 0.02
@@ -189,6 +189,7 @@ MonoBehaviour:
   normalMusicLP: {fileID: 8300000, guid: 09b619b7984a8924384a6d1bc54a6cc2, type: 3}
   intenseMusic: {fileID: 8300000, guid: 15eb490caf2734b19945caaf93095fe4, type: 3}
   intenseMusicLP: {fileID: 8300000, guid: c7551951826be1f4f8b01eed39d503e6, type: 3}
+  isPaused: 0
 --- !u!212 &7786319216874744793
 SpriteRenderer:
   m_ObjectHideFlags: 0
