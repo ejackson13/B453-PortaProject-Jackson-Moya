@@ -867,6 +867,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2714559231398972463, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1641022310}
+    - targetCorrespondingSourceObject: {fileID: 2714559231398972463, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1641022313}
     - targetCorrespondingSourceObject: {fileID: 5243135322800803392, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1641022312}
@@ -943,6 +946,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.4, y: 2.4576225}
   m_EdgeRadius: 0
+--- !u!114 &1641022313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641022309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7992ff42c7764f7fba39d6d84c3598a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSpin: 0
+  isMoving: 0
+  isSideMoving: 1
+  speed: 50
+  movementDistance: 6
+  movementSpeed: 5
+  upperLimit: 2
+  lowerLimit: 0
+  sideUpperLimit: 50
+  sideLowerLimit: 0
 --- !u!1 &1653827322
 GameObject:
   m_ObjectHideFlags: 0
