@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused = false;
 
-
+    private bool destroy = false;
 
 
     private void Awake()
@@ -41,20 +42,28 @@ public class GameManager : MonoBehaviour
         {
             // destroy any attempts to have two instances of the singleton
             Destroy(gameObject);
+            destroy = true;
         }
         else
         {
             Instance = this;
+            
+            // make sure this doesn't reload when a new scene is loaded
+            DontDestroyOnLoad(this.gameObject);
+            SceneManager.activeSceneChanged += OnSceneChanged;
         }
 
-        // make sure this doesn't reload when a new scene is loaded
-        DontDestroyOnLoad(this.gameObject);
-        SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        // prevent code from running in duplicate instance
+        if (destroy)
+        {
+            return;
+        }
+
         screenTint = GetComponent<SpriteRenderer>();
 
         // tint screen
