@@ -261,7 +261,7 @@ public class GameManager : MonoBehaviour
         }
 
         // wait for circles to finish growing
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
 
         // load next scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -287,7 +287,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator NewLevelLoadedCoroutine()
     {
         // make sure scene has finished loading
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.25f);
 
         // shrink circles for transition into new stage
         for (int i = 1; i < 8; i++)
