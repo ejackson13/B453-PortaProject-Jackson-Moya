@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public bool isMuted = false;
 
     private bool destroy = false;
+    private int lastSceneIndex = -1;
 
 
     private void Awake()
@@ -81,12 +82,12 @@ public class GameManager : MonoBehaviour
             for (float j = 1; j >= 0f; j -= lightMaskSpacingY)
             {
                 GameObject lightMask = Instantiate(lightMaskObject);
-                lightMask.SetActive(false);
                 lightMask.transform.localScale = Vector3.zero;
                 lightMask.transform.parent = colParent.transform;
                 Vector3 maskPos = Camera.main.ViewportToWorldPoint(new Vector2(i, j));
                 maskPos.z = 0;
                 lightMask.transform.position = maskPos;
+                lightMask.SetActive(false);
             }
         }
 
@@ -132,7 +133,8 @@ public class GameManager : MonoBehaviour
 
     void OnSceneChanged(Scene current, Scene next)
     {
-        if (current != next)
+        //Debug.Log($"{lastSceneIndex} | {next.buildIndex}");
+        if (lastSceneIndex != -1 && lastSceneIndex != next.buildIndex)
         {
             Instance.StartCoroutine(NewLevelLoadedCoroutine());
         }
@@ -156,6 +158,9 @@ public class GameManager : MonoBehaviour
             normalMusicPlayer.volume = 1;
             normalMusicPlayer.Play();
         }
+
+
+        lastSceneIndex = next.buildIndex;
     }
 
     public void ResetStage()
