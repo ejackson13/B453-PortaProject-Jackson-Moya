@@ -19,9 +19,9 @@ public class Drop : MonoBehaviour
         waitTime = Random.Range(1f, 5f);
         StartCoroutine(FadeOutTimer(waitTime));
 
-        var variation = new Vector2(direction.x == 0 ? Random.Range(-50.0f, 50.0f) : 0.0f, direction.y == 0 ? Random.Range(-50.0f, 50.0f) : 0.0f);
+        var variation = new Vector2(direction.x == 0 ? Random.Range(-5.0f, 5.0f) : 0.0f, direction.y == 0 ? Random.Range(-5f, 5f) : 0.0f);
 
-        rb.velocity = (direction * Random.Range(-200f, 200f)) + variation;
+        rb.velocity = (direction * Random.Range(-25f, 25f)) + variation;
     }
 
     // Update is called once per frame

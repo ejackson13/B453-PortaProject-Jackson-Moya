@@ -49,6 +49,7 @@ public class player : MonoBehaviour
     public AnimationCurve tween_interpolation_curve;
     //const spritetrail= preload('res://Scenes/spritetrail/sprite_trail.tscn')
     //const spherizeShader= preload("res://Scenes/spherizeShader.tscn")
+    [SerializeField] private ContactFilter2D contactFilter;
     [SerializeField] private GameObject drop;
 
     [SerializeField] private SpriteRenderer nSprite; // sprite type instead?
@@ -116,8 +117,8 @@ public class player : MonoBehaviour
 
         // color dive aimer
         List<Collider2D> overlaps = new List<Collider2D>();
-        ContactFilter2D filter = new ContactFilter2D();
-        dive_aim_collider.OverlapCollider(filter.NoFilter(), overlaps);
+        //ContactFilter2D filter = new ContactFilter2D();
+        dive_aim_collider.OverlapCollider(contactFilter, overlaps);
         SpriteRenderer dive_aim_sprite = dive_aim.transform.Find("Main Sprite").transform.gameObject.GetComponent<SpriteRenderer>();
         Color32 r = new Color32(192, 70, 31, 255); // red is "c0461f"
         Color32 gr = new Color32(175, 255, 0, 255); // green is "afff00")
@@ -283,9 +284,9 @@ public class player : MonoBehaviour
 
 
         List<Collider2D> overlaps = new List<Collider2D>();
-        ContactFilter2D filter = new ContactFilter2D();
+        //ContactFilter2D filter = new ContactFilter2D();
 
-        if (diveBuffer > 0 && dive_aim_collider.OverlapCollider(filter, overlaps) > 0)
+        if (diveBuffer > 0 && dive_aim_collider.OverlapCollider(contactFilter, overlaps) > 0)
         {
 
             bool phaseable = true;
@@ -386,8 +387,8 @@ public class player : MonoBehaviour
         diveBuffer -= 0.5f;
 
         List<Collider2D> overlaps = new List<Collider2D>();
-        ContactFilter2D filter = new ContactFilter2D();
-        if (diveBuffer>0 && dive_aim_collider.OverlapCollider(filter, overlaps) == 0) 
+        //ContactFilter2D filter = new ContactFilter2D();
+        if (diveBuffer>0 && dive_aim_collider.OverlapCollider(contactFilter, overlaps) == 0) 
         {
             /*
              * music and sfx stuff
