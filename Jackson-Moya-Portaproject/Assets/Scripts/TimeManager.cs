@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -59,5 +60,12 @@ public class TimerManager : MonoBehaviour
                 break;
             }
         }
+
+
+        GameObject timerText = GameObject.Find("TimerText");
+        int minutes = (int)Mathf.Floor(timer / 60);
+        int seconds = (int)(timer - (minutes * 60));
+        string timerString = $"{minutes} minutes and {seconds} seconds.";
+        timerText.GetComponent<TextMeshProUGUI>().text = timerString;
     }
 }
