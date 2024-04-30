@@ -91,6 +91,8 @@ public class player : MonoBehaviour
             return;
         }
 
+        sfxPlayer.mute = GameManager.Instance.isMuted;
+
         nSprite.flipX = last_horizontal_direction != 1;
         nVignette.transform.position = Vector3.zero; // make sure the vignette stays centered as the player moves
 

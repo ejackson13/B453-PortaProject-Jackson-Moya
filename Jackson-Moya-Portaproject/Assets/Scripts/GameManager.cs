@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip intenseMusicLP;
 
     public bool isPaused = false;
+    public bool isMuted = false;
 
     private bool destroy = false;
 
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
         // mute music
         if (Input.GetKeyDown(KeyCode.M))
         {
+            isMuted = !isMuted;
             normalMusicPlayer.mute = !normalMusicPlayer.mute;
         }
 
@@ -148,6 +150,7 @@ public class GameManager : MonoBehaviour
         } 
         else if (next.name == "Level 21")
         {
+            screenTint.color = noTint;
             normalMusicPlayer.clip = normalMusic;
             normalMusicPlayer.time = 0;
             normalMusicPlayer.volume = 1;
@@ -167,6 +170,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level 20")
         {
             StartCoroutine(FadeoutMusic(1f));
+            StartCoroutine(FadeStage(.8f, 0, 1));
             StartCoroutine(FinalLevelTransition());
         }
         else
@@ -347,6 +351,27 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         normalMusicPlayer.volume = targetVol;
+    }
+
+
+    private IEnumerator FadeStage(float duration, float startA, float targetA)
+    {
+        Color startingColor = new Color (0, 0, 0, startA);
+        Color currentColor = startingColor;
+        Color targetColor = new Color(0, 0, 0, targetA);
+        float passedTime = 0;
+        // interpolate position to target
+        while (passedTime <= duration)
+        {
+            passedTime += Time.deltaTime;
+            float alpha = passedTime / duration;
+
+            currentColor.a = Mathf.Lerp(startingColor.a, targetColor.a, alpha);
+            screenTint.color = currentColor;
+
+            yield return null;
+        }
+        screenTint.color = targetColor;
     }
 
 
