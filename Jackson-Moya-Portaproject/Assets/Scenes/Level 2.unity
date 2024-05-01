@@ -1013,6 +1013,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1741528496}
+    - target: {fileID: 8194328347812509116, guid: c0884cd92dcde4e34b080a9bff109362, type: 3}
+      propertyPath: secondsForLight
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1041,7 +1045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7644098cee74808a15a0d4c9ecfdf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsForLight: 3
+  secondsForLight: 4
   isLightOn: 0
   lightOnSprite: {fileID: 807049027, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
   lightOffSprite: {fileID: 852491183, guid: cd43535bbdf8345fa81818f233dbcf7d, type: 3}
@@ -4508,6 +4512,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 75b9c2f40bfa2e44c94fa5ce196658b3, type: 2}
   - {fileID: 11400000, guid: a3a78f90c70a45b46bc7c664447814cb, type: 2}
   - {fileID: 11400000, guid: c48f29ef164a32a44aea9237cad7cdaa, type: 2}
+  isPhaseable: 1
 --- !u!1001 &1741528495
 PrefabInstance:
   m_ObjectHideFlags: 0
