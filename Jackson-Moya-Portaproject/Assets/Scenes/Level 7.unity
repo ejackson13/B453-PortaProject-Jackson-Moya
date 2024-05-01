@@ -581,6 +581,7 @@ GameObject:
   - component: {fileID: 992197911}
   - component: {fileID: 992197910}
   - component: {fileID: 992197909}
+  - component: {fileID: 992197912}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Phaseable
@@ -3920,6 +3921,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &992197912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992197905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7172b1487cb280143b19ee20eba1338e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 11400000, guid: ade6481840d34446f8fbf59bd042da01, type: 2}
+  - {fileID: 11400000, guid: 9b2650629cb934118b15bbe945eb14f4, type: 2}
+  - {fileID: 11400000, guid: a026f110461d04d72bbec0028e07bebb, type: 2}
+  - {fileID: 11400000, guid: be1e0697f2dda40ecaaa7d647da236f9, type: 2}
+  - {fileID: 11400000, guid: aaea6445acb77456899a1e0b8428dab0, type: 2}
+  - {fileID: 11400000, guid: 1c55035db59e94ba688000ce2bd47378, type: 2}
+  - {fileID: 11400000, guid: b3464eb12331742a0bf7861db6b49377, type: 2}
+  - {fileID: 11400000, guid: 9cdb34fcc06e545068d5607650a4583e, type: 2}
+  - {fileID: 11400000, guid: 11e1ba46c18134af4897c76c1602c926, type: 2}
+  - {fileID: 11400000, guid: 3518211c383114dbc8c8bd6f654e450b, type: 2}
+  - {fileID: 11400000, guid: 01cc1195b9aae4ec68852b5f783d6163, type: 2}
+  - {fileID: 11400000, guid: a3702524e366e41ff807b118be189def, type: 2}
+  - {fileID: 11400000, guid: 7fe5c6936ce2f420c8833a63fdc78dee, type: 2}
+  - {fileID: 11400000, guid: 8d401f9bfbacb43aa971ab4aa6a17c49, type: 2}
+  - {fileID: 11400000, guid: dbe4175fe4ac44f0599ec0aaa29bbe61, type: 2}
+  - {fileID: 11400000, guid: 81ee696f994934c049fbbf3b458e6540, type: 2}
+  - {fileID: 11400000, guid: 2201d24ead461c74f8c6aeeb021ce76f, type: 2}
+  - {fileID: 11400000, guid: 73ad57281e737b1429d4c929d85e0356, type: 2}
+  - {fileID: 11400000, guid: facd60c7f39b6e741826902a48f7f471, type: 2}
+  - {fileID: 11400000, guid: 9eca880523c724c44a839318ebe631fd, type: 2}
+  - {fileID: 11400000, guid: 9eb470734a8e8044c98b1aa1cb50e4df, type: 2}
+  - {fileID: 11400000, guid: 2cd8d4e47a4d0654bbd0466cdf53af42, type: 2}
+  - {fileID: 11400000, guid: 2057092f8eb3d7047b14dc17f4208a70, type: 2}
+  - {fileID: 11400000, guid: 300441cd39057e34ab2eef954186d4fd, type: 2}
+  - {fileID: 11400000, guid: 75b9c2f40bfa2e44c94fa5ce196658b3, type: 2}
+  - {fileID: 11400000, guid: a3a78f90c70a45b46bc7c664447814cb, type: 2}
+  - {fileID: 11400000, guid: c48f29ef164a32a44aea9237cad7cdaa, type: 2}
 --- !u!1001 &997239462
 PrefabInstance:
   m_ObjectHideFlags: 0
