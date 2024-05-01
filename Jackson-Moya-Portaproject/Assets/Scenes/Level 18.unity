@@ -201,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8695754709504747672, guid: 6be29cfecc8ab48ec842a6ac0704d564, type: 3}
       propertyPath: secondsForLight
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
